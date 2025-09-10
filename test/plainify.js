@@ -102,4 +102,25 @@ QUnit.module('Тестируем функцию plainify', () => {
         'Ожидаем ошибку для массива'
         );
     });
+
+    QUnit.test('Корректно обрабатывает массивы внутри объекта', (assert) => {
+        const originalObject = {
+            a: [1, 2, 3],
+            b: {
+            c: ['x', 'y'],
+            d: { e: [true, false] }
+            }
+        };
+        const result = plainify(originalObject);
+
+        assert.deepEqual(
+            result,
+            {
+            a: [1, 2, 3],
+            'b.c': ['x', 'y'],
+            'b.d.e': [true, false]
+            },
+            'Массивы должны сохраняться как есть, без раскрытия по элементам'
+        );
+    });
 });
