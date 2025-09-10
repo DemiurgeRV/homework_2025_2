@@ -10,7 +10,14 @@
  * plainify({ a: 1, b: { c: 2 } });
  * // returns { a: 1, 'b.c': 2 }
  */
-const plainify = (obj) => {
+const plainify = (obj) => {    
+    if (obj === null || obj === undefined) {
+        throw new TypeError('Argument "obj" must not be null or undefined');
+    }
+    if (typeof obj !== 'object' || Array.isArray(obj)) {
+        throw new TypeError('Argument "obj" must be a plain object');
+    }
+
     const result = {};
     const stack = [{ value: obj, path: [] }];
 
