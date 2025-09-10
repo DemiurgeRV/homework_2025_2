@@ -10,7 +10,6 @@
  * plainify({ a: 1, b: { c: 2 } });
  * // returns { a: 1, 'b.c': 2 }
  */
-
 function plainify(obj) {
     const result = {};
     const stack = [{ value: obj, path: [] }];
@@ -19,7 +18,7 @@ function plainify(obj) {
         const { value, path } = stack.pop();
 
         for (const key in value) {
-            if (!value.hasOwnProperty(key)) continue;
+            if (!Object.prototype.hasOwnProperty.call(value, key)) continue;
 
             const newPath = [...path, key];
             const newKey = newPath.join('.');
