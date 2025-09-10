@@ -82,7 +82,7 @@ QUnit.module('Тестируем функцию plainify', () => {
     QUnit.test('Бросает ошибку при строке', (assert) => {
         assert.throws(
         () => plainify('not an object'),
-        /must be a plain object/,
+        /must be an object/,
         'Ожидаем ошибку для строки'
         );
     });
@@ -90,7 +90,7 @@ QUnit.module('Тестируем функцию plainify', () => {
     QUnit.test('Бросает ошибку при числе', (assert) => {
         assert.throws(
         () => plainify(123),
-        /must be a plain object/,
+        /must be an object/,
         'Ожидаем ошибку для числа'
         );
     });
@@ -98,7 +98,7 @@ QUnit.module('Тестируем функцию plainify', () => {
     QUnit.test('Бросает ошибку при массиве', (assert) => {
         assert.throws(
         () => plainify([1, 2, 3]),
-        /must be a plain object/,
+        /must be an object/,
         'Ожидаем ошибку для массива'
         );
     });

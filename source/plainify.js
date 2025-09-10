@@ -15,7 +15,7 @@ const plainify = (obj) => {
         throw new TypeError('Argument "obj" must not be null or undefined');
     }
     if (typeof obj !== 'object' || Array.isArray(obj)) {
-        throw new TypeError('Argument "obj" must be a plain object');
+        throw new TypeError('Argument "obj" must be an object');
     }
 
     const result = {};
