@@ -10,7 +10,7 @@
  * plainify({ a: 1, b: { c: 2 } });
  * // returns { a: 1, 'b.c': 2 }
  */
-function plainify(obj) {
+const plainify = (obj) => {
     const result = {};
     const stack = [{ value: obj, path: [] }];
 
