@@ -62,4 +62,44 @@ QUnit.module('Тестируем функцию plainify', () => {
             'null и undefined должны корректно сохраняться'
         );
     });
+
+      QUnit.test('Бросает ошибку при null', (assert) => {
+        assert.throws(
+        () => plainify(null),
+        /must not be null or undefined/,
+        'Ожидаем ошибку для null'
+        );
+    });
+
+    QUnit.test('Бросает ошибку при undefined', (assert) => {
+        assert.throws(
+        () => plainify(undefined),
+        /must not be null or undefined/,
+        'Ожидаем ошибку для undefined'
+        );
+    });
+
+    QUnit.test('Бросает ошибку при строке', (assert) => {
+        assert.throws(
+        () => plainify('not an object'),
+        /must be a plain object/,
+        'Ожидаем ошибку для строки'
+        );
+    });
+
+    QUnit.test('Бросает ошибку при числе', (assert) => {
+        assert.throws(
+        () => plainify(123),
+        /must be a plain object/,
+        'Ожидаем ошибку для числа'
+        );
+    });
+
+    QUnit.test('Бросает ошибку при массиве', (assert) => {
+        assert.throws(
+        () => plainify([1, 2, 3]),
+        /must be a plain object/,
+        'Ожидаем ошибку для массива'
+        );
+    });
 });
