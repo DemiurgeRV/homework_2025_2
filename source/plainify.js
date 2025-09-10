@@ -20,7 +20,7 @@ const plainify = (obj) => {
     }
 
     const result = {};
-    const stack = [{ value: obj, path: [] }];
+    const stack = [{ value: obj, path: '' }];
 
     while (stack.length > 0) {
         const { value, path } = stack.pop();
@@ -28,12 +28,11 @@ const plainify = (obj) => {
         for (const key in value) {
             if (!Object.prototype.hasOwnProperty.call(value, key)) continue;
 
-            const newPath = [...path, key];
-            const newKey = newPath.join('.');
+            const newKey = path ? `${path}.${key}` : key;
             const currentValue = value[key];
 
             if (currentValue !== null && typeof currentValue === 'object' && !Array.isArray(currentValue)) {
-                stack.push({ value: currentValue, path: newPath });
+                stack.push({ value: currentValue, path: newKey });
             } else {
                 result[newKey] = currentValue;
             }
