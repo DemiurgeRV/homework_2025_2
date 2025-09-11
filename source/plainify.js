@@ -12,10 +12,11 @@
  * // returns { a: 1, 'b.c': 2 }
  */
 const plainify = (obj) => {    
-    if (obj === null || obj === undefined) {
+    // если obj == null || undefined
+    if (obj == null) { 
         throw new TypeError('Argument "obj" must not be null or undefined');
     }
-    if (typeof obj !== 'object' || Array.isArray(obj)) {
+    if (Object.prototype.toString.call(obj) !== '[object Object]') {
         throw new TypeError('Argument "obj" must be an object');
     }
 
@@ -31,7 +32,9 @@ const plainify = (obj) => {
             const newKey = path ? `${path}.${key}` : key;
             const currentValue = value[key];
 
-            if (currentValue !== null && typeof currentValue === 'object' && !Array.isArray(currentValue)) {
+            if (currentValue !== null && 
+                Object.prototype.toString.call(currentValue) === '[object Object]'
+            ) {
                 stack.push({ value: currentValue, path: newKey });
             } else {
                 result[newKey] = currentValue;
